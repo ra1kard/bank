@@ -16,7 +16,8 @@ public class CreditAccount extends Account {
         return creditLimit;
     }
 
-    public double getPercentCredit() {
+    @Override
+    public int getPercentCredit() {
         return percentCredit;
     }
 

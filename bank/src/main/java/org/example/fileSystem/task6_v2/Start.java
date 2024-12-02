@@ -11,12 +11,17 @@ public class Start {
         AccountRepository accountRepository = new AccountRepository();
         UserService userService = new UserService(userRepository, accountRepository);
 
-        //TODO: id вынести в User как count++ ?
         //подразумеваем, что создаем Юзеров только через репозиторий
-        userRepository.add(new User(1, "Kanova Katya", "79552223310"));
+        User katya = new User(1, "Kanova Katya", "79552223310");
+        userRepository.add(katya);
         userRepository.add(new User(2, "Danova Daria", "79552223311"));
         userRepository.add(new User(3, "Panov Petya", "79552223312"));
         userRepository.add(new User(4, "Vanov Vasya", "79552223313"));
+        userRepository.printFile();
+        userRepository.getById(2);
+        userRepository.remove(3);
+        userRepository.remove(katya);
+        userRepository.printFile();
 
         //подразумеваем, что создаем Счета только через репозиторий (пусть пока сразу с балансом, потом сдел изменение)
         accountRepository.add(new DepositAccount(105201, 44000));
@@ -31,7 +36,8 @@ public class Start {
 
         accountRepository.add(new SavingAccount(105209, 1222000, 10));
         accountRepository.add(new SavingAccount(105210, 7555000, 15));
-        accountRepository.add(new SavingAccount(105211, 555000, 15));
+        Account savingAccount105211 = new SavingAccount(105211, 555000, 15);
+        accountRepository.add(savingAccount105211);
         accountRepository.add(new SavingAccount(105212, 15000, 15));
 
         accountRepository.add(new FuelLoyaltyAccount(205201, 100, 3));
@@ -42,22 +48,26 @@ public class Start {
         accountRepository.add(new StoreFiftyLoyaltyAccount(305202, 50, 10));
         accountRepository.add(new StoreFiftyLoyaltyAccount(305203, 50, 15));
 
-        //добавим юзерам счета
-        userRepository.getById(1).addAccount(accountRepository.getById(105201));
-        userRepository.getById(1).addAccount(accountRepository.getById(105205));
-        userRepository.getById(1).addAccount(accountRepository.getById(105209));
-        userRepository.getById(1).addAccount(accountRepository.getById(205201));
-        userRepository.getById(1).addAccount(accountRepository.getById(305201));
+        accountRepository.getById(105210);
+        System.out.println("проверка getById: " + accountRepository.getById(105210));
+        accountRepository.remove(savingAccount105211);
 
-        userRepository.getById(3).addAccount(accountRepository.getById(105202));
+        //добавим юзерам счета
+        //userRepository.getById(1).addAccount(accountRepository.getById(105201));
+        //userRepository.getById(1).addAccount(accountRepository.getById(105202));
+        //userRepository.getById(1).addAccount(accountRepository.getById(105203));
+        //userRepository.getById(1).addAccount(accountRepository.getById(205201));
+        //userRepository.getById(1).addAccount(accountRepository.getById(305201));
+
+        /*userRepository.getById(3).addAccount(accountRepository.getById(105202));
         userRepository.getById(3).addAccount(accountRepository.getById(105206));
         userRepository.getById(3).addAccount(accountRepository.getById(105210));
         userRepository.getById(3).addAccount(accountRepository.getById(205202));
-        userRepository.getById(3).addAccount(accountRepository.getById(305202));
+        userRepository.getById(3).addAccount(accountRepository.getById(305202));*/
 
         //выведем полную информацию по юзеру и его счетам
-        printInfoUser(userRepository.getById(1));
-        printInfoUser(userRepository.getById(3));
+        //printInfoUser(userRepository.getById(1));
+        //printInfoUser(userRepository.getById(3));
 
         //ИТЕРАЦИЯ 1
         //попробуем внести/снять деньги на счет НАПРЯМУЮ
@@ -102,7 +112,7 @@ public class Start {
         printInfoUser(userRepository.getById(1));*/
     }
 
-    public static void printInfoUser(User user) {
+    /*public static void printInfoUser(User user) {
         System.out.println();
         System.out.println("Информация по юзеру " + user.getFullName() + ":");
         System.out.println("◦ id: " + user.getId() + ", " + user);
@@ -117,6 +127,6 @@ public class Start {
         }
 
         System.out.println();
-    }
+    }*/
 
 }

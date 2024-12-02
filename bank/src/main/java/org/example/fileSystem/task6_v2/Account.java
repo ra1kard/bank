@@ -6,7 +6,9 @@ public abstract class Account implements AccountOperation {
     private String name;
     private TypeAccount typeAccount;
     private double creditLimit;
+    private int percentCredit;
     private int discountPercent;
+    private int percentPlus;
 
     Account(int number, double balance) {
         this.number = number;
@@ -21,6 +23,10 @@ public abstract class Account implements AccountOperation {
 
     public double getDiscountPercent() {
         return discountPercent;
+    }
+
+    public int getPercentPlus() {
+        return percentPlus;
     }
 
     public int getNumber() {
@@ -59,6 +65,10 @@ public abstract class Account implements AccountOperation {
 
     public double getCreditLimit() {
         return creditLimit;
+    }
+
+    public int getPercentCredit() {
+        return percentCredit;
     }
 
 }

@@ -9,7 +9,8 @@ public class SavingAccount extends Account {
         this.percentPlus = percentPlus;
     }
 
-    public double getDiscountPercent() {
+    @Override
+    public int getPercentPlus() {
         return percentPlus;
     }
 
